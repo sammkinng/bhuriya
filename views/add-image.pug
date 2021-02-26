@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Add Image
+        link(rel="stylesheet",href="/stylesheets/style.css",type="text/css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    body
+        div.container
+            div.top-menu
+                h1.page-heading Add Image
+                ul
+                    li
+                        a(href='/') 
+                            i.material-icons clear
+            div.page-content
+                p.page-description We are adding image
+                hr
+                //- Change in Form Type
+                form(action='/add-image',method='post',enctype="multipart/form-data")
+                    table(cellpadding="10",cellspacing="10")
+                        //- Add Image File Start
+                        tr
+                            td
+                                label(for="file") Select Image
+                            td
+                                input(type="file",name="image")
+                        //- Image File End
+                        tr
+                            td(colspan="2",align="right")
+                                input(type="submit" value='submit')

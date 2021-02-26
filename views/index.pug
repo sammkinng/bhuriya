@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title bhuria
+        link(rel="stylesheet", href="stylesheets/style.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="shortcut icon", href="/uploads/bhuria.png", type="image/x-icon")
+    body 
+        header 
+            div#h
+                div#cir
+                a(href="/") 
+                    pre 𝓫𝓱𝓾𝓻𝓲𝓪.𝓬𝓸𝓶
+                i.material-icons(onclick="fxn();") add
+            hr
+        div#main
+            div#left
+            div#mid 
+                each y in files 
+                    div#im
+                        img(src='data:image/'+y.img.contentType+';base64,'+y.img.data.toString('base64'), alt="image")
+                        i.material-icons delete
+                        a(href="/edit")
+                            i.material-icons edit 
+                    //- div#space
+            div#right
+        footer
+        div#sidemenu
+            i.material-icons#exit(onclick='ex();') clear
+            form(action="", method="post")
+                label(for="username") username
+                input(type="text" name='username')
+                label(for="password") password 
+                input(type="password" name='password')
+                input(type="submit", value="submit")
+        script(src="tes.js") 
