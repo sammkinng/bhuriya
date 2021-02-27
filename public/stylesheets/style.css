@@ -42,14 +42,6 @@ h1,ul{
 
 }
 
-/* Button STyling */
-.button{
-    padding:5px;
-    font-size: 13px;
-    background: #ccc;
-    margin: 5px;
-    color: blue;
-}
 
 #h{
     width: 100%;
@@ -125,11 +117,15 @@ footer{
 
 #im{
     width: 400px;
-    height: 430px;
+    height: 450px;
     border: 1px solid rgb(2, 137, 170);
     box-shadow: 0px 0px 5px #ccc;
     float: left;
     margin: 10px 10px 10px 10px;
+}
+#im a{
+    cursor: pointer;
+    float: right;
 }
 img{
     width: 400px;
@@ -143,7 +139,7 @@ img{
 }
 #sidemenu{
     width: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     height: 100%;
@@ -170,7 +166,12 @@ form{
     margin-top: 30px;
     margin-bottom: 20px;
 }
-
+#cc{
+    font-size: 20px;
+}
+#imgg{
+    display: none;
+}
 @media screen and (max-width:600px){
     #left,#right{
         /* display: none; */
@@ -185,9 +186,18 @@ form{
     #im{
         height: 330px;
         margin: auto;
+        float: unset;
     }
     img{
         height: 300px;
+    }
+    .container{
+        width: 100%;
+        border: none;
+        box-sizing: border-box;
+    }
+    textarea{
+        width: 220px;
     }
 }
  

@@ -6,3 +6,15 @@ const fxn=()=>{
 const ex=()=>{
     x.style.width='0';
 }
+
+function preview_image(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('imgg');
+  output.src = reader.result;
+  output.style.display='inline-block'
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}

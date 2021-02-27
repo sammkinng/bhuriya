@@ -22,10 +22,9 @@ html(lang="en")
                 each y in files 
                     div#im
                         img(src='data:image/'+y.img.contentType+';base64,'+y.img.data.toString('base64'), alt="image")
-                        i.material-icons delete
-                        a(href="/edit")
-                            i.material-icons edit 
-                    //- div#space
+                        span=y.desc
+                        a(href="/delete"+y._id) 
+                            i.material-icons(onclick="fxn();") delete
             div#right
         footer
         div#sidemenu

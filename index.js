@@ -10,6 +10,9 @@ const views_path =path.join(__dirname,'./views');
 // db connection
 require('./connect');
 
+// alert api
+const alert=require('alert');
+
 // schema model for image
 var imgModel = require('./images');
 
@@ -32,11 +35,10 @@ app.set("views",views_path);
 
 // homepage get
 app.get('/', (req, res) => {
-	imgModel.find({}, (err, items) => {
+	imgModel.find({}).sort({name:-1}).exec((err, items) => {
 		if (err) {
 			console.log(err);
 			res.status(500).send('An error occurred', err);
-            res.redirect('/error');
 		}
 		else {
 			res.render('index', { files: items });
@@ -52,7 +54,8 @@ app.post('/',(req,res)=>{
         res.redirect('/add-image');
     }
     else{
-        window.alert('wrong password');
+        alert('Please enter correct username and password');
+        res.redirect('/');
     }
 });
 
@@ -62,9 +65,11 @@ app.get('/add-image',(req,res)=>{
 });
 
 // add-image post
-app.post('/add-image',upload.single('image'),function(req,res,next){
+app.post('/add-image',upload.single('image'), function(req,res,next){
+    let name=Date.now()+'';
     var image = new imgModel({
-        name: req.body.name,
+        name: name,
+        desc:req.body.caption,
         img: {
             data: req.file.buffer,
             contentType: 'image/png'
@@ -72,19 +77,19 @@ app.post('/add-image',upload.single('image'),function(req,res,next){
     });
     image.save(function(err) {
         if (err) { return next(err); }
-        res.redirect("/");
+        res.redirect('/');
     });
 });
 
-// error page 
-app.get('/error',(req,res)=>{
-    res.render('/error');
+// delete image
+app.get('/delete:id',(req,res)=>{
+    imgModel.deleteOne({_id:req.params.id},(err)=>{
+        if(err){
+            res.status(500).send('server busy',err);
+        }
+        res.redirect('/');
+    })
 })
-
-// app.get('/show-image/:img_url',function(req,res){
-//     res.render('show-image',{'imgUrl':req.params.img_url});
-// });
-
 
 // listening of port
 app.listen(port,()=>{
