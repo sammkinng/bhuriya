@@ -183,12 +183,24 @@ form{
     right: 20px;
 }
 #font{
-    font-family: samm;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
-@font-face{
-    font-family: samm;
-    src: url(/regina-script-font/ReginaScript-d9xAX.ttf);
-    /* src: url(/regina-script-font/ReginaScript-mL1WG.otf); */
+#bot{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: #222;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    box-sizing: border-box;
+    padding: 20px 20px 0px 20px;
+}
+#bot pre{
+    font-size: 140%;
+    color: #222;
 }
 @media screen and (max-width:600px){
     #left,#right{

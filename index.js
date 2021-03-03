@@ -22,7 +22,7 @@ var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 
 // port to server
-const port=process.env.PORT || 5050;
+const port=process.env.PORT || 8050;
 
 // json and urlencoding
 app.use(express.json());
