@@ -13,7 +13,7 @@ require('./connect');
 // alert api
 const alert=require('alert');
 
-// schema model for image
+// schema models
 var imgModel = require('./images');
 
 // multer to upload images
@@ -40,9 +40,7 @@ app.get('/', (req, res) => {
 			console.log(err);
 			res.status(500).send('An error occurred', err);
 		}
-		else {
-			res.render('index', { files: items });
-		}
+		res.render('index', { files: items });
 	});
 });
 
@@ -51,12 +49,23 @@ app.post('/',(req,res)=>{
     const username=req.body.username;
     const password=req.body.password;
     if(username==='bhuria'&&password==='amityadavasiaki'){
-        res.redirect('/add-image');
+            res.redirect('/loggedin');
     }
     else{
         alert('Please enter correct username and password');
         res.redirect('/');
     }
+});
+
+//loggedin homepage
+app.get('/loggedin',(req,res)=>{
+    imgModel.find({}).sort({name:-1}).exec((err, items) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('An error occurred', err);
+		}
+		res.render('index',{files:items,status:true});
+	});
 });
 
 // add-image get
@@ -77,7 +86,7 @@ app.post('/add-image',upload.single('image'), function(req,res,next){
     });
     image.save(function(err) {
         if (err) { return next(err); }
-        res.redirect('/');
+        res.redirect('/loggedin');
     });
 });
 
@@ -87,7 +96,7 @@ app.get('/delete:id',(req,res)=>{
         if(err){
             res.status(500).send('server busy',err);
         }
-        res.redirect('/');
+        res.redirect('/loggedin');
     })
 })
 
