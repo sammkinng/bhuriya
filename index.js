@@ -22,7 +22,7 @@ var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 
 // port to server
-const port=process.env.PORT || 8050;
+const port=process.env.PORT || 5050;
 
 // json and urlencoding
 app.use(express.json());
@@ -45,14 +45,14 @@ app.get('/', (req, res) => {
 });
 
 // homepage post
-app.post('/',(req,res)=>{
+app.post('/',async(req,res)=>{
     const username=req.body.username;
     const password=req.body.password;
     if(username==='bhuria'&&password==='amityadavasiaki'){
             res.redirect('/loggedin');
     }
     else{
-        alert('Please enter correct username and password');
+        await alert('Please enter correct username and password');
         res.redirect('/');
     }
 });

@@ -8,30 +8,43 @@ html(lang="en")
         link(rel="stylesheet", href="stylesheets/style.css")
         link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
         link(rel="shortcut icon", href="/uploads/bhuria.png", type="image/x-icon")
+        script(src="https://kit.fontawesome.com/f778fd0092.js")
     body 
         header 
-            div#h
-                div#cir
+            #h
+                #cir
                 a(href="/") 
                     pre 𝓫𝓱𝓾𝓻𝓲𝓪.𝓬𝓸𝓶
                 if(status)
                     a(href='/add-image')
                         i.material-icons add
                 if(!status)
-                    a(href='/loggedin',onclick='fxn();') login
+                    i.material-icons(onclick='fxn();') person
             hr
-        div#main
-            div#left
-            div#mid 
+        #main
+            #left
+            #mid 
                 each y in files 
-                    div#im
+                    #im
                         img(src='data:image/'+y.img.contentType+';base64,'+y.img.data.toString('base64'), alt="image")
                         span=y.desc
                         if(status)
                             a(href="/delete"+y._id) 
-                                i.material-icons#del delete
-            div#right
+                                i.material-icons delete
+            #right
         footer
+            #font This website is made by samm.pvt.ltd
+            #links 
+                a(href='https://www.facebook.com/sam.kingsman.3348/')
+                    i.fab.fa-facebook
+                a(href='https://github.com/sammkinng')
+                    i.fab.fa-github
+                a(href='https://www.linkedin.com/in/prince-yadav-0b6908195/')
+                    i.fab.fa-linkedin-in
+                a(href="https://www.instagram.com/mister_khapitar/")
+                    i.fab.fa-instagram
+                a(href="https://youtube.com/channel/UCmAnEOoVrfhPU4RB_lQDm-A") 
+                    i.fab.fa-youtube
         div#sidemenu
             i.material-icons#exit(onclick='ex();') clear
             form(action="", method="post")
